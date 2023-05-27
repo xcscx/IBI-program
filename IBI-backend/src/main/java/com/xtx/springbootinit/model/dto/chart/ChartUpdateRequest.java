@@ -1,22 +1,24 @@
-package com.xtx.springbootinit.model.entity;
+package com.xtx.springbootinit.model.dto.chart;
 
-import com.baomidou.mybatisplus.annotation.*;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableLogic;
 import lombok.Data;
 
 import java.io.Serializable;
 import java.util.Date;
 
 /**
- * 图表信息表
- * @TableName chart
+ * 更新请求
+ *
+ * @author IT蛋
  */
-@TableName(value ="chart")
 @Data
-public class Chart implements Serializable {
+public class ChartUpdateRequest implements Serializable {
+
     /**
      * id
      */
-    @TableId(type = IdType.ASSIGN_ID)
     private Long id;
 
     /**
@@ -33,11 +35,6 @@ public class Chart implements Serializable {
      * 图标类型
      */
     private String chartType;
-
-    /**
-     * 创建用户Id
-     */
-    private Long userId;
 
     /**
      * 生成的图标数据
@@ -62,9 +59,6 @@ public class Chart implements Serializable {
     /**
      * 是否删除
      */
-    @TableLogic
     private Byte isDelete;
-
-    @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 }
