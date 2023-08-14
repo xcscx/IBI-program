@@ -1,6 +1,6 @@
 package com.xtx.springbootinit;
 
-import javax.annotation.Resource;
+import com.xtx.springbootinit.model.enums.UserRoleEnum;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -12,8 +12,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class MainApplicationTests {
 
+    UserRoleEnum a = UserRoleEnum.ADMIN;
+    UserRoleEnum b = UserRoleEnum.ADMIN;
+
     @Test
     void contextLoads() {
+        System.out.println(a.equals(b));
     }
 
 }

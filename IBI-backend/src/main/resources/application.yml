@@ -1,6 +1,6 @@
 spring:
   application:
-    name: springboot-init
+    name: IBI-program
   # 默认 dev 环境
   profiles:
     active: dev
@@ -28,6 +28,11 @@ spring:
     multipart:
       # 大小限制
       max-file-size: 10MB
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
 server:
   address: 0.0.0.0
   port: 8601
@@ -54,3 +59,8 @@ cos:
     secretKey: xxx
     region: xxx
     bucket: xxx
+# 鱼聪明AI
+yuapi:
+  client:
+    access-key: m4ex6yb3yamya88jhu8ts827zrh46r6q
+    secret-key: 64fa59ezosj5enh0w7j0qmh7ib1w08g0

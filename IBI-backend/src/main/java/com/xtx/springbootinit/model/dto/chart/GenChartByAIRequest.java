@@ -5,35 +5,25 @@ import lombok.Data;
 import java.io.Serializable;
 
 /**
- * 编辑请求
+ * 文件上传请求
  *
  * @author IT蛋
  */
 @Data
-public class ChartEditRequest implements Serializable {
+public class GenChartByAIRequest implements Serializable {
 
     /**
-     * id
-     */
-    private Long id;
-
-    /**
-     * 图表名称
+     * 名称
      */
     private String name;
 
     /**
-     * 分析目标
+     * 目标
      */
     private String goal;
 
     /**
-     * 图标数据
-     */
-    private String chartData;
-
-    /**
-     * 图标类型
+     * 图表类型
      */
     private String chartType;
 

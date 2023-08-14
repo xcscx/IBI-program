@@ -3,6 +3,8 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
+# 忽略配置文件
+application.yml
 
 ### STS ###
 .apt_generated

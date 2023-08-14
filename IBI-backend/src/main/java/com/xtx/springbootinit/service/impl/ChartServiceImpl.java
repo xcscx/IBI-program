@@ -5,17 +5,13 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.xtx.springbootinit.constant.CommonConstant;
 import com.xtx.springbootinit.mapper.ChartMapper;
 import com.xtx.springbootinit.model.dto.chart.ChartQueryRequest;
-import com.xtx.springbootinit.model.dto.post.PostQueryRequest;
 import com.xtx.springbootinit.model.entity.Chart;
-import com.xtx.springbootinit.model.entity.Post;
 import com.xtx.springbootinit.service.ChartService;
 import com.xtx.springbootinit.utils.SqlUtils;
-import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 
 /**
  *
@@ -37,6 +33,7 @@ public class ChartServiceImpl extends ServiceImpl<ChartMapper, Chart>
         }
         String sortField = chartQueryRequest.getSortField();
         String sortOrder = chartQueryRequest.getSortOrder();
+        String name = chartQueryRequest.getName();
         Long id = chartQueryRequest.getId();
         String goal = chartQueryRequest.getGoal();
         String chartType = chartQueryRequest.getChartType();
@@ -45,6 +42,7 @@ public class ChartServiceImpl extends ServiceImpl<ChartMapper, Chart>
         // 拼接查询条件
         queryWrapper.eq(id != null && id > 0, "id", id);
         queryWrapper.eq(StringUtils.isNotBlank(chartType), "chartType", chartType);
+        queryWrapper.like(StringUtils.isNotBlank(name), "name", name);
         queryWrapper.eq(StringUtils.isNotBlank(goal), "goal", goal);
         queryWrapper.eq(ObjectUtils.isNotEmpty(userId), "userId", userId);
         queryWrapper.eq("isDelete", false);
@@ -53,6 +51,17 @@ public class ChartServiceImpl extends ServiceImpl<ChartMapper, Chart>
                 sortField);
         return queryWrapper;
     }
+
+    public void handleChartUpdateError(long chartId, String execMessage) {
+        Chart updateChartResult = new Chart();
+        updateChartResult.setId(chartId);
+        updateChartResult.setStatus("failed");
+        boolean updateResult = this.updateById(updateChartResult);
+        if(!updateResult) {
+            log.error("更新失败状态失败" + chartId + "," + execMessage);
+        }
+    }
+
 
 }
 

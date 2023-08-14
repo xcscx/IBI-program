@@ -29,8 +29,11 @@ create table if not exists chart
 (
     id           bigint auto_increment comment 'id' primary key,
     goal         text                                   null comment '分析目标',
+    `name`       varchar(128)                           null comment '图表名称',
     chartData    text                                   null comment '图标数据',
     chartType    varchar(128)                           null comment '图表类型',
+    status       varchar(128) default  'wait'           not null comment 'wait,running,succeed,failed',
+    execMessage  text                                   null comment '执行信息',
     userId       bigint                                 null comment '创建用户id',
     genChart     text                                   null comment '生成的图表数据',
     genResult    text                                   null comment '生成的分析结论',
